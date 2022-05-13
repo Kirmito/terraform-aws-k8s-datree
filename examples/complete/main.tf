@@ -1,5 +1,6 @@
 provider "aws" {
-  region = local.region
+  region  = local.region
+  profile = "destination"
   default_tags {
     tags = local.tags
   }
@@ -8,11 +9,14 @@ provider "aws" {
 locals {
   region      = "us-east-1"
   name_prefix = "k8s-apps-example"
+  account_id  = data.aws_caller_identity.this.account_id
   tags = {
     environment = "develop"
     repository  = "k8s-apps"
   }
 }
+
+data "aws_caller_identity" "this" {}
 
 resource "aws_kms_key" "secrets" {
   description = "The KMS Key to encrypt SSM Parameters and CodeBuild Artifacts"
@@ -52,7 +56,7 @@ data "aws_iam_policy_document" "codebuild_policy" {
     actions = [
       "ssm:GetParameters",
     ]
-    resources = ["/${local.name_prefix}/datree/APP_TOKEN"]
+    resources = ["arn:aws:ssm:${local.region}:${local.account_id}:parameter/${local.name_prefix}/datree/*"]
   }
 
   statement {
