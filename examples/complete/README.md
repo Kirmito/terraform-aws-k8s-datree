@@ -16,34 +16,34 @@ Note that this example may create resources which can cost money (AWS CodeBuild 
 
 ## Requirements
 
-| Name | Version |
-|------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~> 1.0 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 3.0 |
+| Name                                                                     | Version |
+| ------------------------------------------------------------------------ | ------- |
+| <a name="requirement_terraform"></a> [terraform](#requirement_terraform) | ~> 1.0  |
+| <a name="requirement_aws"></a> [aws](#requirement_aws)                   | ~> 3.0  |
 
 ## Providers
 
-| Name | Version |
-|------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 3.75.1 |
+| Name                                             | Version |
+| ------------------------------------------------ | ------- |
+| <a name="provider_aws"></a> [aws](#provider_aws) | 3.75.1  |
 
 ## Modules
 
-| Name | Source | Version |
-|------|--------|---------|
-| <a name="module_k8s_apps_example"></a> [k8s\_apps\_example](#module\_k8s\_apps\_example) | ../../ | n/a |
+| Name                                                                                | Source | Version |
+| ----------------------------------------------------------------------------------- | ------ | ------- |
+| <a name="module_k8s_apps_example"></a> [k8s_apps_example](#module_k8s_apps_example) | ../../ | n/a     |
 
 ## Resources
 
-| Name | Type |
-|------|------|
-| [aws_iam_policy.codebuild](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy) | resource |
-| [aws_iam_role.codebuild](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) | resource |
-| [aws_iam_role_policy_attachment.codebuild](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
-| [aws_kms_alias.secrets](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/kms_alias) | resource |
-| [aws_kms_key.secrets](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/kms_key) | resource |
+| Name                                                                                                                                                | Type        |
+| --------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| [aws_iam_policy.codebuild](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy)                                  | resource    |
+| [aws_iam_role.codebuild](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role)                                      | resource    |
+| [aws_iam_role_policy_attachment.codebuild](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment)  | resource    |
+| [aws_kms_alias.secrets](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/kms_alias)                                      | resource    |
+| [aws_kms_key.secrets](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/kms_key)                                          | resource    |
 | [aws_iam_policy_document.codebuild_assume_role](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
-| [aws_iam_policy_document.codebuild_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
+| [aws_iam_policy_document.codebuild_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document)      | data source |
 
 ## Inputs
 
@@ -51,6 +51,6 @@ No inputs.
 
 ## Outputs
 
-| Name | Description |
-|------|-------------|
-| <a name="output_codebuild_pr_arn"></a> [codebuild\_pr\_arn](#output\_codebuild\_pr\_arn) | ARN of the CodeBuild project. |
+| Name                                                                                | Description                   |
+| ----------------------------------------------------------------------------------- | ----------------------------- |
+| <a name="output_codebuild_pr_arn"></a> [codebuild_pr_arn](#output_codebuild_pr_arn) | ARN of the CodeBuild project. |
