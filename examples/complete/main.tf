@@ -1,6 +1,5 @@
 provider "aws" {
-  region  = local.region
-  profile = "destination"
+  region = local.region
   default_tags {
     tags = local.tags
   }
@@ -42,10 +41,18 @@ data "aws_iam_policy_document" "codebuild_policy" {
     effect = "Allow"
     actions = [
       "codebuild:*",
-      "ssm:GetParameters",
       "codestar-connections:UseConnection"
     ]
     resources = ["*"]
+  }
+
+  statement {
+    sid    = "SSMPermissions"
+    effect = "Allow"
+    actions = [
+      "ssm:GetParameters",
+    ]
+    resources = ["/${local.name_prefix}/datree/APP_TOKEN"]
   }
 
   statement {
@@ -63,7 +70,7 @@ data "aws_iam_policy_document" "codebuild_policy" {
     actions = [
       "kms:*"
     ]
-    resources = ["*"]
+    resources = [aws_kms_key.secrets.arn]
   }
 }
 
