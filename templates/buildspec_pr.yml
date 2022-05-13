@@ -1,0 +1,29 @@
+version: 0.2
+
+env:
+  variables:
+    DATREE_URL: "${DATREE_URL}"
+    DATREE_POLICY: "${DATREE_POLICY}"
+  parameter-store:
+      DATREE_APP_TOKEN: "${DATREE_APP_TOKEN_PATH}"
+
+phases:
+  install:
+    commands:
+      - echo "Installing Datree"
+      - apt-get update && apt-get install -y gnupg software-properties-common curl
+      - curl $DATREE_URL | /bin/bash
+      - echo "Configure Datree Token"
+      - datree config set token $DATREE_APP_TOKEN
+      - datree config get token
+    finally:
+      - datree version
+  pre_build:
+    commands:
+      - echo "List YAML files"
+      - find . -name *.yaml -type f
+      - DATREE_FILES=$(find . -name *.yaml -type f)
+  build:
+    commands:
+      - echo "Execute Datree Test"
+      - datree test $DATREE_FILES --only-k8s-files --ignore-missing-schemas $DATREE_POLICY
