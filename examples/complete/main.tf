@@ -85,11 +85,12 @@ resource "aws_iam_role_policy_attachment" "codebuild" {
 }
 
 module "k8s_apps_example" {
-  source         = "../../"
-  name           = local.name_prefix
-  codebuild_role = aws_iam_role.codebuild.arn
-  repository_url = "https://github.com/Kirmito/k8s-apps"
-  branch         = "main"
-  kms_secrets    = aws_kms_alias.secrets.arn
-  datree_policy  = "k8s_apps_example"
+  source                = "../../"
+  name                  = local.name_prefix
+  codebuild_role        = aws_iam_role.codebuild.arn
+  repository_url        = "https://github.com/Kirmito/k8s-apps"
+  branch                = "main"
+  kms_secrets           = aws_kms_alias.secrets.arn
+  datree_policy         = "k8s_apps_example"
+  datree_app_token_path = "/${local.name_prefix}/datree/APP_TOKEN"
 }

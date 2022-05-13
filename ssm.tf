@@ -6,7 +6,7 @@ resource "aws_ssm_parameter" "codebuild_pr_payload_url" {
 }
 
 resource "aws_ssm_parameter" "codebuild_pr_secret" {
-  count  = try(aws_codebuild_webhook.pull_request.secret, "") == "" ? 0 : 1
+  count  = var.source_type == "GITHUB_ENTERPRISE" ? 1 : 0 
   name   = "/${var.name}/${var.branch}/build_pr/secret"
   type   = "SecureString"
   value  = aws_codebuild_webhook.pull_request.secret
